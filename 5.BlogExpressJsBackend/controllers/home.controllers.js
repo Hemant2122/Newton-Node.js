@@ -1,20 +1,39 @@
+const UserModel = require("../database/Models/User.model");
 
-
-
-function getHome(req, res){
-    res.json({
-        name: "hemant",
-        class: "12th",
-        age: 17,
-    });
+function getHome(req, res) {
+  res.json({
+    name: "hemant",
+    class: "12th",
+    age: 17,
+  });
 }
 
-
-function getDetails(req, res){
-    res.json({
-        detail: "its nice",
-    });
+function getDetails(req, res) {
+  res.json({
+    detail: "its nice",
+  });
 }
 
+async function createUser(req, res) {
+    const { username, password, email } = req.body;
+    try{
+    
+        const userObj = new UserModel({
+        username: username,
+        password: password,
+        email: email,
+        });
+    
+        await userObj.save();
+    
+        res.json({
+        message: "success !! created the user " + userObj._id,
+        });
+    }catch(error){
+        res.status(500).json({
+            message: "Some error occured " +  error.message,
+        });
+    }
+}
 
-module.exports = { getHome, getDetails };
+module.exports = { getHome, getDetails, createUser };

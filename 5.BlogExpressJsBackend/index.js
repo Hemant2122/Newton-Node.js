@@ -4,8 +4,10 @@ const server = express();
 const mongoose  = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
-
 const homeRoute = require("./routes/home.routes");
+
+// middelware
+server.use(express.json());
 
 
 

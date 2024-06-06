@@ -1,34 +1,35 @@
 const mongoose = require("mongoose");
+const { CONSTANTS_CREATE_USER } = require("../../util/constants");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
     {
         username: {
             type: String,
-            require: true,
-            min: 3,
-            max: 25,
+            required: true,
+            minLength: [CONSTANTS_CREATE_USER.min, "need min criteria fulfilled"],
+            maxLength: CONSTANTS_CREATE_USER.max,
             unique: [true, "Username Should be Unique"],
         },
 
         email: {
             type: String,
-            require: true,
+            required: true,
             unique: [true, "Email Should be Unique"],
-            min: 5,
-            max: 55,
+            minLength: 5,
+            maxLength: 55,
         },
 
         password: {
             type: String,
-            require: [true, "Password is require buddy!!"],
-            min: 8,
+            required: [true, "Password is required buddy!!"],
+            minLength: 8,
         },
 
         contact: {
             type: Number,
-            min: 10,
-            max: 10,
+            minLength: 10,
+            maxLength: 10,
         },
     },
 
@@ -37,6 +38,6 @@ const userSchema = new Schema(
 );
 
 
-const UserModel = mongoose.model("User", userSchema);
+const UserModel = mongoose.model("Users", userSchema);
 
 module.exports = UserModel;
