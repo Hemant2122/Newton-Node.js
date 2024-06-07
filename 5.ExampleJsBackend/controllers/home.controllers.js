@@ -1,4 +1,4 @@
-const UserModel = require("../database/Models/User.model");
+const { createuserservice } = require("../services/home.service");
 
 function getHome(req, res) {
   res.json({
@@ -14,17 +14,14 @@ function getDetails(req, res) {
   });
 }
 
+
+// CRUD
+
 async function createUser(req, res) {
     const { username, password, email } = req.body;
     try{
     
-        const userObj = new UserModel({
-        username: username,
-        password: password,
-        email: email,
-        });
-    
-        await userObj.save();
+        await createuserservice();
     
         res.json({
         message: "success !! created the user " + userObj._id,
