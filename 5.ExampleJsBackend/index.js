@@ -5,10 +5,13 @@ const mongoose  = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
 const homeRoute = require("./routes/home.routes");
+const authRoute = require("./routes/auth.routes");
+const cors = require("cors");
 
 // middelware
+// This will parse every incoming request to the server.
 server.use(express.json());
-
+server.use(cors()); // Allows the req to the server
 
 
 dotenv.config({path: path.resolve(__dirname,'./.env')});
@@ -16,6 +19,7 @@ dotenv.config({path: path.resolve(__dirname,'./.env')});
 
 // REGISTER ROUTES
 server.use("/api/v1/home", homeRoute);
+server.use("/api/v1/auth", authRoute);
 
 
 
