@@ -13,7 +13,7 @@ const blogSchema = new Schema({
     description: {
         type: String,
         required: true,
-        maxLength: 100,
+        minLength: 10,
     },
 
     tag: {
@@ -30,7 +30,12 @@ const blogSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: "users"
-    }
+    },
+
+    username: {
+        type: String
+    },
+    
 }, { timestamps: true });
 
 const BlogsModel = mongoose.model("Blogs", blogSchema)

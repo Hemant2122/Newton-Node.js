@@ -3,7 +3,7 @@ const { createBlogService } = require("../services/blog.service");
 
 async function createBlog(req, res, next){
     try {
-        const {status, message} = await createBlogService(req.body);
+        const {status, message} = await createBlogService(req.body, req.xyzUser, req.userId);
 
         res.status(status).json({
             message,

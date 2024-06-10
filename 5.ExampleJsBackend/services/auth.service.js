@@ -8,13 +8,14 @@ async function loginUserService(body, secret){
     // const secret = "hemantkumar";
     try {
         const { username, password } = body;
-        const foundUser = await UserModel.find({ username: username });
-        console.log(username, foundUser[0].username === username, "foundUser Name");
-        console.log(password, foundUser[0].password === password, "foundUser");
+        const foundUser = await UserModel.find({ username });
+
+        // console.log(username, foundUser[0].username === username, "foundUser Name");
+        // console.log(password, foundUser[0].password === password, "foundUser");
 
         if(foundUser && foundUser[0].password  === password){
             const payload = {
-                user: { id: foundUser._id },
+                user: { id: foundUser[0]._id.toString(), name: foundUser[0].username },
             }
             const authToken = jwt.sign(payload, secret);
 
