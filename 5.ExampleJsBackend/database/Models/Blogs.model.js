@@ -13,7 +13,7 @@ const blogSchema = new Schema({
     description: {
         type: String,
         required: true,
-        minLength: 100,
+        maxLength: 100,
     },
 
     tag: {
@@ -36,4 +36,4 @@ const blogSchema = new Schema({
 const BlogsModel = mongoose.model("Blogs", blogSchema)
 
 
-module.exports = {BlogsModel};
+module.exports = { BlogsModel };

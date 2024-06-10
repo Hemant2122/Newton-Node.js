@@ -6,6 +6,9 @@ const dotenv = require("dotenv");
 const path = require("path");
 const homeRoute = require("./routes/home.routes");
 const authRoute = require("./routes/auth.routes");
+const blogRoute = require("./routes/blog.routes");
+
+
 const cors = require("cors");
 
 // middelware
@@ -20,6 +23,7 @@ dotenv.config({path: path.resolve(__dirname,'./.env')});
 // REGISTER ROUTES
 server.use("/api/v1/home", homeRoute);
 server.use("/api/v1/auth", authRoute);
+server.use("/api/v1/blog", blogRoute);
 
 
 
